@@ -17,6 +17,7 @@ attr_reader :bikes
 
   def release_bike
     fail 'No bikes available' if empty?
+    fail 'Bike broken' if bikes.each { |k, v| v == true}
     bikes.pop
   end
 
