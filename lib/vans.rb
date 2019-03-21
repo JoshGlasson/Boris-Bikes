@@ -32,19 +32,3 @@ class Van
   end
 
 end
-
-ds = DockingStation.new
-b = Bike.new
-v = Van.new
-g = Garage.new
-b.report_broken
-ds.dock b
-bikes = ds.bikes
-v.collect_broken_bikes(bikes)
-p v.broken_bikes
-g.fix_bikes(v.broken_bikes)
-p g.fixed_bikes
-v.distributes_working_bikes(g.fixed_bikes)
-p v.bikes_to_deliver
-ds.accept_fixed_bikes(v.bikes_to_deliver)
-p ds.bikes
