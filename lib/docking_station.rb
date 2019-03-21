@@ -16,9 +16,15 @@ attr_reader :bikes
   end
 
   def release_bike
-    fail 'No bikes available' if empty?
-    fail 'No working bikes available' unless bikes.last.working?
-    bikes.pop
+    bike_check = bikes.map { |bike| bike.working? }
+      if empty?
+        fail 'No bikes available'
+      elsif bike_check.include?(true) == false
+        fail 'No working bikes available'
+      else
+        working_bike_position = bike_check.find_index(true)
+        return bikes.slice!(working_bike_position)
+      end
   end
 
 private
