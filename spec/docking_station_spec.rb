@@ -2,6 +2,8 @@ require 'docking_station'
 
 describe DockingStation do
 let(:bike) { double(:bike) }
+let(:van) { double(:van) }
+let(:garage) { double(:garage) }
 
   it {is_expected.to respond_to(:release_bike) }
 
@@ -65,6 +67,13 @@ let(:bike) { double(:bike) }
 
     it 'has a default capacity' do
       expect(subject.capacity).to eq DockingStation::DEFAULT_CAPACITY
+    end
+
+    it 'accepts return of fixed bikes' do
+      bike = []
+      bike << Bike.new
+      subject.accept_fixed_bikes(bike)
+      expect(subject.bikes.map {|bike| bike.working?}).to eq [true]
     end
   end
 

@@ -27,6 +27,12 @@ attr_reader :bikes
       end
   end
 
+  def accept_fixed_bikes(fixed_bikes)
+    while fixed_bikes.count > 0
+      bikes << fixed_bikes.pop
+    end
+  end
+
 private
 
   def full?
